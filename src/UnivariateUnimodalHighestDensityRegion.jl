@@ -6,12 +6,19 @@ using Reexport
 export univariate_unimodal_HDR
 
 """
-    univariate_unimodal_HDR(d::UnivariateDistribution, region::Real)
+    univariate_unimodal_HDR(d::UnivariateDistribution, region::Real, lr_atol::Real=0.0001)
+
+This is a quick bisection-esque heuristic to find a highest density region (HDR) of a univariate, unimodal distribution. For guarantees that the true HDR is found, use the optimisation based version of this function. Returns the found HDR interval as a vector with length two.
+
+# Arguments
+- `d`: a `UnivariateDistribution` defined in [Distributions.jl](https://juliastats.org/Distributions.jl/stable/). 
+- `region`: a real number ∈ [0, 1] specifying the proportion of the density of `d` of the highest density region. 
+- `lr_atol`: the absolute tolerance between the quantile of the left and right side of the bracket used to determine algorithm convergence.
 """
-function univariate_unimodal_HDR(d::UnivariateDistribution, region::Real)
+function univariate_unimodal_HDR(d::UnivariateDistribution, region::Real, lr_atol::Real=0.0001)
 
     if region < 0.0 || region > 1.0
-        throw(ArgumentError("region must be ∈ [0.0, 1.0]"))
+        throw(DomainError("region must be ∈ [0.0, 1.0]"))
         return nothing
     end
     if region == 0.0
@@ -45,7 +52,7 @@ function univariate_unimodal_HDR(d::UnivariateDistribution, region::Real)
         explore_left = false
     end
 
-    while (r - l) > 0.0001
+    while (r - l) > lr_atol
         c_interval = SA[quantile(d, c), quantile(d, c + region)]
         c_width = c_interval[2] - c_interval[1]
 
