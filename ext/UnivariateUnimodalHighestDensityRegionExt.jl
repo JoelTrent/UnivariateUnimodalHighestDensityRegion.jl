@@ -9,7 +9,7 @@ using Optimization
         solve_alg; 
         solve_kwargs::NamedTuple=(xtol_abs = 0.00001,))
 
-This is an optimisation-based approach to find a highest density region (HDR) of a univariate, unimodal distribution. Testing indicates that this approach more robustly finds the HDR than the other approach. Returns the found HDR interval as a vector with length two.
+This is an optimisation-based approach to find the highest density region (HDR) of a univariate, unimodal distribution. Testing indicates that this approach more robustly finds the HDR than the heuristic approach. The stepped approach may be more robust for discrete distributions. Returns the found HDR interval as a vector with length two.
 
 # Arguments
 - `d`: a `UnivariateDistribution` defined in [Distributions.jl](https://juliastats.org/Distributions.jl/stable/). 
