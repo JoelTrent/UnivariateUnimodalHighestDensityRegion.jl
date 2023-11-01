@@ -3,6 +3,18 @@ uuid = "accfcff7-0a28-4262-8a91-e6d956268142"
 authors = ["JoelTrent <79883375+JoelTrent@users.noreply.github.com> and contributors"]
 version = "1.0.0-DEV"
 
+[deps]
+Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
+Requires = "ae029012-a4dd-5104-9daa-d747884805df"
+
+[weakdeps]
+Optimization = "7f7a1694-90dd-40f0-9382-eb1efda571ba"
+Requires = "ae029012-a4dd-5104-9daa-d747884805df"
+
+[extensions]
+UnivariateUnimodalHighestDensityRegionExt = "Optimization"
+
 [compat]
 julia = "1.3"
 
