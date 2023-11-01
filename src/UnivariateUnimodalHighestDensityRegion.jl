@@ -1,6 +1,7 @@
 module UnivariateUnimodalHighestDensityRegion
 
-using Distributions, StaticArrays
+using Reexport
+@reexport using Distributions, StaticArrays
 
 export univariate_unimodal_HDR
 
@@ -79,6 +80,9 @@ end
 
 if !isdefined(Base, :get_extension)
     using Requires
+end
+
+@static if !isdefined(Base, :get_extension)
     function __init__()
         @require Optimization = "7f7a1694-90dd-40f0-9382-eb1efda571ba" include("../ext/UnivariateUnimodalHighestDensityRegionExt.jl")
     end

@@ -5,8 +5,9 @@ version = "1.0.0-DEV"
 
 [deps]
 Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
-StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
+Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
 Requires = "ae029012-a4dd-5104-9daa-d747884805df"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 
 [weakdeps]
 Optimization = "7f7a1694-90dd-40f0-9382-eb1efda571ba"
@@ -19,6 +20,7 @@ UnivariateUnimodalHighestDensityRegionExt = "Optimization"
 julia = "1.3"
 
 [extras]
+Optimization = "7f7a1694-90dd-40f0-9382-eb1efda571ba"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
