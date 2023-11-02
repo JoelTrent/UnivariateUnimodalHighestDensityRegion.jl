@@ -13,7 +13,7 @@ bib = CitationBibliography(
 makedocs(;
     modules=[UnivariateUnimodalHighestDensityRegion,
             isdefined(Base, :get_extension) ? Base.get_extension(UnivariateUnimodalHighestDensityRegion, :UnivariateUnimodalHighestDensityRegionExt) :
-            Manifolds.UnivariateUnimodalHighestDensityRegionExt],
+            UnivariateUnimodalHighestDensityRegion.UnivariateUnimodalHighestDensityRegionExt],
     authors="JoelTrent <79883375+JoelTrent@users.noreply.github.com> and contributors",
     sitename="UnivariateUnimodalHighestDensityRegion.jl",
     format=Documenter.HTML(;
