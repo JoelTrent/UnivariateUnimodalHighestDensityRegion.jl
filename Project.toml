@@ -12,6 +12,7 @@ StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 [weakdeps]
 Optimization = "7f7a1694-90dd-40f0-9382-eb1efda571ba"
 Requires = "ae029012-a4dd-5104-9daa-d747884805df"
+SciMLBase = "0bca4576-84f4-4d90-8ffe-ffa030f20462"
 
 [extensions]
 UnivariateUnimodalHighestDensityRegionExt = "Optimization"
@@ -26,3 +27,4 @@ Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
 test = ["Optimization", "OptimizationNLopt", "Test"]
+test = ["Optimization", "OptimizationNLopt", "SciMLBase", "Test"]
