@@ -1,3 +1,4 @@
 [deps]
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+Optimization = "7f7a1694-90dd-40f0-9382-eb1efda571ba"
 UnivariateUnimodalHighestDensityRegion = "accfcff7-0a28-4262-8a91-e6d956268142"

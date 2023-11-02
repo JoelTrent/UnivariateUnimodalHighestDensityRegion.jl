@@ -1,4 +1,3 @@
-using Revise
 using UnivariateUnimodalHighestDensityRegion
 using Test
 using Optimization, OptimizationNLopt
