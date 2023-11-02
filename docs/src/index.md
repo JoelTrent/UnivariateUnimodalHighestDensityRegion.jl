@@ -4,10 +4,7 @@ CurrentModule = UnivariateUnimodalHighestDensityRegion
 
 # UnivariateUnimodalHighestDensityRegion
 
-```@index
-```
-
-A simple package for computing the highest density region of a univariate distribution defined in [Distributions.jl](https://juliastats.org/Distributions.jl/stable/). It is only intended for use on unimodal distributions as the package assumes that there is a single, connected, highest density region. Both continuous and discrete distributions work as expected. The exported function will not error on bimodal distributions, but it will not identify the correct highest density regions. 
+A simple package for computing the highest density region [hyndmancomputing1996](@cite) of a univariate distribution defined in [Distributions.jl](https://juliastats.org/Distributions.jl/stable/). It is only intended for use on unimodal distributions as the package assumes that there is a single, connected, highest density region. Both continuous and discrete distributions are supported. However, the assumptions of the method may break down for discrete distributions; the method of Ben O'Neill [oneillsmallest2022](@cite) may be more appropriate. This can be seen in the occasional inconsistency by width 1 between the HDR found by the grid-based and optimization-based approaches. The exported function will not error on bimodal distributions, but it will not identify the correct highest density regions. 
 
 A grid-based approach and optimization-based approach are implemented. The optimisation approach will, in general, require fewer distribution quantile evaluations for the same level of accuracy. However, it requires loading [Optimization.jl](https://docs.sciml.ai/Optimization/stable/) and therefore requires more memory.
 
@@ -59,6 +56,7 @@ using Optimization, OptimizationNLopt
 solver = NLopt.LN_BOBYQA()
 ```
 
+`Normal`:
 ```@example
 using UnivariateUnimodalHighestDensityRegion # hide
 using Optimization # hide
@@ -67,7 +65,7 @@ solver = NLopt.LN_BOBYQA() # hide
 univariate_unimodal_HDR(Normal(0,2), 0.95, solver)
 ```
 
-The function is most valuable for asymmetric distributions such as a `LogNormal` or `Poisson` distribution:
+`LogNormal`:
 ```@example
 using UnivariateUnimodalHighestDensityRegion # hide
 using Optimization # hide
@@ -76,6 +74,7 @@ solver = NLopt.LN_BOBYQA() # hide
 univariate_unimodal_HDR(LogNormal(1,0.5), 0.95, solver)
 ```
 
+`Poisson`:
 ```@example
 using UnivariateUnimodalHighestDensityRegion # hide
 using Optimization # hide

@@ -1,9 +1,14 @@
 using UnivariateUnimodalHighestDensityRegion
 using Optimization
 using OptimizationNLopt
-using Documenter
+using Documenter, DocumenterCitations
 
 DocMeta.setdocmeta!(UnivariateUnimodalHighestDensityRegion, :DocTestSetup, :(using UnivariateUnimodalHighestDensityRegion); recursive=true)
+
+bib = CitationBibliography(
+    joinpath(@__DIR__, "src", "refs.bib");
+    style=:numeric
+)
 
 makedocs(;
     modules=[UnivariateUnimodalHighestDensityRegion,
@@ -20,8 +25,10 @@ makedocs(;
     pages=[
         "Home" => "index.md",
         "User Interface" => "user_interface.md",
-        "Internal API" => "internal_api.md"
+        "Internal API" => "internal_api.md",
+        "References" => "references.md"
     ],
+    plugins=[bib],
     warnonly=true
 )
 
