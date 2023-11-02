@@ -7,7 +7,6 @@ DocMeta.setdocmeta!(UnivariateUnimodalHighestDensityRegion, :DocTestSetup, :(usi
 makedocs(;
     modules=[UnivariateUnimodalHighestDensityRegion],
     authors="JoelTrent <79883375+JoelTrent@users.noreply.github.com> and contributors",
-    repo="https://github.com/JoelTrent/UnivariateUnimodalHighestDensityRegion.jl/blob/{commit}{path}#{line}",
     sitename="UnivariateUnimodalHighestDensityRegion.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
