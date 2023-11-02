@@ -17,7 +17,7 @@ end
         for d in [Normal(0,1), Normal(10, 4), LogitNormal(0, 0.5), Beta(1.5, 1.5)]
             for region in 0.01:0.01:0.99
                 
-                interval = quantile(d, [(1.0-region) / 2, 1. - ((1.0-region) / 2.)])
+                interval = quantile.(d, [(1.0-region) / 2, 1. - ((1.0-region) / 2.)])
                 hdr_interval = univariate_unimodal_HDR(d, region)    
                 @test isapprox_testing(interval, hdr_interval)
 
@@ -48,7 +48,7 @@ end
                 hdr_interval_gridded = univariate_unimodal_HDR(d, region, 201)
                 hdr_interval_optimised = univariate_unimodal_HDR(d, region, default_solver; solve_kwargs=(xtol_abs=0.000001,))
 
-                symmetric_interval_width = diff(quantile(d, [(1.0-region)/2., 1.0-(1.0-region)/2.]))[1]
+                symmetric_interval_width = diff(quantile.(d, [(1.0-region)/2., 1.0-(1.0-region)/2.]))[1]
 
                 @test diff(hdr_interval_gridded)[1] ≤ symmetric_interval_width
                 @test diff(hdr_interval_optimised)[1] ≤ symmetric_interval_width
@@ -66,7 +66,7 @@ end
                 hdr_interval_gridded = univariate_unimodal_HDR(d, region, 201)
                 hdr_interval_optimised = univariate_unimodal_HDR(d, region, default_solver; solve_kwargs=(xtol_abs=0.000001,))
 
-                symmetric_interval_width = diff(quantile(d, [(1.0-region)/2., 1.0-(1.0-region)/2.]))[1]
+                symmetric_interval_width = diff(quantile.(d, [(1.0-region)/2., 1.0-(1.0-region)/2.]))[1]
 
                 @test diff(hdr_interval_gridded)[1] ≤ symmetric_interval_width
                 @test diff(hdr_interval_optimised)[1] ≤ symmetric_interval_width
