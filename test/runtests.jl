@@ -7,7 +7,7 @@ function isapprox_testing(vec1::AbstractVector{<:Real}, vec2::AbstractVector{<:R
 end
 
 function isapprox_testing(x1::Real, x2::Real)
-    return isapprox(x1, x2, atol=0.01*x2)
+    return isapprox(x1, x2, atol=0.0001*x2)
 end
 
 @testset "UnivariateUnimodalHighestDensityRegion.jl" begin
@@ -41,7 +41,6 @@ end
     end
 
     @testset "AsymmetricContinuousDistributionsMethodsConsistent" begin
-
         for d in [LogNormal(1, 0.5), LogitNormal(-1, 0.6), LogitNormal(2, 0.5), Beta(1.3, 1.5), 
                 Beta(1.5, 1.3), Gamma(3,2), Gamma(1,10), Gamma(10,2)]
             for region in 0.01:0.01:0.99
@@ -59,8 +58,6 @@ end
     end
 
     @testset "AsymmetricDiscreteDistributionsMethodsConsistent" begin
-
-        which_better=zeros(Int, 2)
         for d in [Poisson(4), Poisson(20), Poisson(500), Binomial(10, 0.5), Binomial(100,0.7)]
             for region in 0.01:0.01:0.99
                 hdr_interval_gridded = univariate_unimodal_HDR(d, region, 201)
@@ -71,16 +68,8 @@ end
                 @test diff(hdr_interval_gridded)[1] ≤ symmetric_interval_width
                 @test diff(hdr_interval_optimised)[1] ≤ symmetric_interval_width
 
-                @test isapprox_testing(hdr_interval_gridded, hdr_interval_optimised) || isapprox_testing(diff(hdr_interval_gridded)[1], diff(hdr_interval_optimised)[1])
-                if !(isapprox_testing(hdr_interval_gridded, hdr_interval_optimised) || isapprox_testing(diff(hdr_interval_gridded)[1], diff(hdr_interval_optimised)[1]))
-                    if diff(hdr_interval_gridded)[1] < diff(hdr_interval_optimised)[1]
-                        which_better[1]+=1
-                    else
-                        which_better[2]+=1
-                    end
-                end
+                @test isapprox_testing(hdr_interval_gridded, hdr_interval_optimised) || abs(diff(hdr_interval_gridded)[1] - diff(hdr_interval_optimised)[1]) in [0,1]
             end
         end
-        println(which_better)
     end    
 end
