@@ -5,6 +5,8 @@ using Reexport
 
 export univariate_unimodal_HDR
 
+function _univariate_unimodal_HDR end
+
 """
     region_handling(d::UnivariateDistribution, region::Real)
 

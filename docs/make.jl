@@ -1,13 +1,20 @@
 using UnivariateUnimodalHighestDensityRegion
 using Optimization
-using Documenter
+using OptimizationNLopt
+using Documenter, DocumenterCitations
 
 DocMeta.setdocmeta!(UnivariateUnimodalHighestDensityRegion, :DocTestSetup, :(using UnivariateUnimodalHighestDensityRegion); recursive=true)
 
+bib = CitationBibliography(
+    joinpath(@__DIR__, "src", "refs.bib");
+    style=:numeric
+)
+
 makedocs(;
-    modules=[UnivariateUnimodalHighestDensityRegion],
+    modules=[UnivariateUnimodalHighestDensityRegion,
+            isdefined(Base, :get_extension) ? Base.get_extension(UnivariateUnimodalHighestDensityRegion, :UnivariateUnimodalHighestDensityRegionExt) :
+            Manifolds.UnivariateUnimodalHighestDensityRegionExt],
     authors="JoelTrent <79883375+JoelTrent@users.noreply.github.com> and contributors",
-    repo="https://github.com/JoelTrent/UnivariateUnimodalHighestDensityRegion.jl/blob/{commit}{path}#{line}",
     sitename="UnivariateUnimodalHighestDensityRegion.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
@@ -17,7 +24,12 @@ makedocs(;
     ),
     pages=[
         "Home" => "index.md",
+        "User Interface" => "user_interface.md",
+        "Internal API" => "internal_api.md",
+        "References" => "references.md"
     ],
+    plugins=[bib],
+    warnonly=true
 )
 
 deploydocs(;
