@@ -35,7 +35,8 @@ There is a single exported function, `univariate_unimodal_HDR`, which is used wi
 After loading the package using the previous command we can find the highest density region of univariate distributions. Finding the 95% HDR of a `Normal` distribution will return the 2.5% and 97.5% quantiles; note, the distribution is symmetric so the method is unnecessary.
 ```@julia
 univariate_unimodal_HDR(Normal(0,2), 0.95)
-
+```
+```@julia
 2-element MVector{2, Float64} with indices SOneTo(2):
  -3.919927969080115
   3.919927969080115
@@ -44,12 +45,16 @@ univariate_unimodal_HDR(Normal(0,2), 0.95)
 The function is most valuable for asymmetric distributions such as a `LogNormal` or `Poisson` distribution:
 ```@julia
 univariate_unimodal_HDR(LogNormal(1,0.5), 0.95)
+```
+```@julia
 2-element MVector{2, Float64} with indices SOneTo(2):
  0.721779994018427
  6.312112357076725
 ```
 ```@julia
 univariate_unimodal_HDR(Poisson(4), 0.95)
+```
+```@julia
 2-element MVector{2, Int64} with indices SOneTo(2):
  1
  8
@@ -69,6 +74,8 @@ solver = NLopt.LN_BOBYQA()
 `Normal`:
 ```@julia
 univariate_unimodal_HDR(Normal(0,2), 0.95, solver)
+```
+```@julia
 2-element MVector{2, Float64} with indices SOneTo(2):
  -3.919927969080115
   3.919927969080115
@@ -78,8 +85,18 @@ univariate_unimodal_HDR(Normal(0,2), 0.95, solver)
 ```@julia
 univariate_unimodal_HDR(LogNormal(1,0.5), 0.95, solver)
 ```
+```@julia
+2-element MVector{2, Float64} with indices SOneTo(2):
+ 0.7104607462933641
+ 6.300409489807155
+```
 
 `Poisson`:
 ```@julia
 univariate_unimodal_HDR(Poisson(4), 0.95, solver)
+```
+```@julia
+2-element MVector{2, Int64} with indices SOneTo(2):
+ 1
+ 8
 ```
