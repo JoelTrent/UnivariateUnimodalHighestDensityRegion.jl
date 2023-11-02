@@ -1,4 +1,5 @@
 using UnivariateUnimodalHighestDensityRegion
+using Optimization
 using Documenter
 
 DocMeta.setdocmeta!(UnivariateUnimodalHighestDensityRegion, :DocTestSetup, :(using UnivariateUnimodalHighestDensityRegion); recursive=true)
