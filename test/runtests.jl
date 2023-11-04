@@ -38,6 +38,12 @@ end
         @test isapprox_testing([0.0, 0.0], univariate_unimodal_HDR(d, 0, default_solver))
         @test isapprox_testing([-Inf, Inf], univariate_unimodal_HDR(d, 1))
         @test isapprox_testing([-Inf, Inf], univariate_unimodal_HDR(d, 1, default_solver))
+
+        d = Beta(0.5, 0.5)
+        @test isapprox_testing([0.5, 0.5], univariate_unimodal_HDR(d, 0)) # returns the median as mode doesn't exist
+
+        d = Normal(Inf, 1)
+        @test isapprox_testing([Inf, Inf], univariate_unimodal_HDR(d, 0.99, default_solver))
     end
 
     @testset "AsymmetricContinuousDistributionsMethodsConsistent" begin
